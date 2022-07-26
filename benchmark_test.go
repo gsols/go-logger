@@ -21,6 +21,7 @@ func BenchmarkLogEmpty(b *testing.B) {
 			MaxBackups: 2,
 			MaxAge:     24,
 		}})
+	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -41,6 +42,7 @@ func BenchmarkDisabled(b *testing.B) {
 			MaxBackups: 2,
 			MaxAge:     24,
 		}})
+	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -61,6 +63,7 @@ func BenchmarkInfo(b *testing.B) {
 			MaxBackups: 2,
 			MaxAge:     24,
 		}})
+	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -87,6 +90,7 @@ func BenchmarkContextFields(b *testing.B) {
 		Int("int", 123).
 		Float32("float", -2.203230293249593).
 		Logger()
+	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -110,6 +114,7 @@ func BenchmarkContextAppend(b *testing.B) {
 	logger.With().
 		Str("foo", "bar").
 		Logger()
+	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
@@ -130,6 +135,7 @@ func BenchmarkLogFields(b *testing.B) {
 			MaxBackups: 2,
 			MaxAge:     24,
 		}})
+	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {

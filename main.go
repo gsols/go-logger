@@ -8,7 +8,7 @@ import (
 
 // logger is a pointer to a `zerolog.Logger` struct.
 var _logger *zerolog.Logger
-var _once *sync.Once
+var _once sync.Once
 
 // Init is a function that takes a `Config` struct as an argument and returns nothing. It is a function
 // that is called once and only once
