@@ -8,7 +8,7 @@ import (
 
 // logger is a pointer to a `zerolog.Logger` struct.
 var _logger *zerolog.Logger
-var _once sync.Once
+var _once *sync.Once
 
 // Init is a function that takes a `Config` struct as an argument and returns nothing. It is a function
 // that is called once and only once
@@ -20,7 +20,7 @@ func Init(config *Config) {
 
 // New is a function that creates a new logger with the given configuration
 func New(config *Config) *zerolog.Logger {
-	var logLevel zerolog.Level = config.LogLevel
+	logLevel := config.LogLevel
 
 	if config.DebugMode {
 		logLevel = zerolog.DebugLevel

@@ -12,8 +12,8 @@ func Hook(h zerolog.Hook) zerolog.Logger {
 	return _logger.Hook(h)
 }
 
-// GroupId returns a pointer to a zerolog logger with the `groupId` field set to the value of the `id` parameter
-func GroupId(id string) *zerolog.Logger {
+// GroupID returns a pointer to a zerolog logger with the `groupId` field set to the value of the `id` parameter
+func GroupID(id string) *zerolog.Logger {
 	l := With().Str("groupId", id).Logger()
 	return &l
 }

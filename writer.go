@@ -1,11 +1,10 @@
 package logger
 
 import (
-	"fmt"
 	"github.com/rs/zerolog"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"io/ioutil"
 
+	"fmt"
 	"io"
 	"os"
 )
@@ -20,7 +19,7 @@ func ParseWriter(writerConfig WriterConfig) io.Writer {
 	case "stdout":
 		writer = os.Stdout
 	case "discard":
-		writer = ioutil.Discard
+		writer = io.Discard
 	default:
 		err := os.MkdirAll(writerConfig.Directory, os.ModePerm)
 		if err != nil {
