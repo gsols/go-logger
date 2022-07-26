@@ -2,6 +2,7 @@ package logger_test
 
 import (
 	"github.com/idbi/logger"
+
 	"testing"
 	"time"
 )
@@ -95,7 +96,6 @@ func BenchmarkContextFields(b *testing.B) {
 }
 
 func BenchmarkContextAppend(b *testing.B) {
-
 	logger.Init(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("warn"),
