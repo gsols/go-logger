@@ -1,15 +1,18 @@
-# Awesome Project
-![GitHub go.mod Go version](http://shields.k8s.idbi.pe:30001/github/go-mod/go-version/idbi/go-template?style=for-the-badge)
-![GitHub branch checks state](http://shields.k8s.idbi.pe:30001/github/checks-status/idbi/go-template/main?style=for-the-badge)
-![GitHub issues](http://shields.k8s.idbi.pe:30001/github/issues/idbi/go-template?style=for-the-badge)
-![GitHub all releases](http://shields.k8s.idbi.pe:30001/github/downloads/idbi/go-template/total?style=for-the-badge)
-![GitHub contributors](http://shields.k8s.idbi.pe:30001/github/contributors/idbi/go-template?style=for-the-badge)
-![GitHub top language](http://shields.k8s.idbi.pe:30001/github/languages/top/idbi/go-template?style=for-the-badge)
-![GitHub](http://shields.k8s.idbi.pe:30001/github/license/idbi/go-template?style=for-the-badge)
+# Logger
 
-The awesome project provides awesome features to awesome people.
+![GitHub go.mod Go version](http://shields.k8s.idbi.pe:30001/github/go-mod/go-version/idbi/logger?style=for-the-badge)
+![GitHub branch checks state](http://shields.k8s.idbi.pe:30001/github/checks-status/idbi/logger/main?style=for-the-badge)
+![GitHub issues](http://shields.k8s.idbi.pe:30001/github/issues/idbi/logger?style=for-the-badge)
+![GitHub all releases](http://shields.k8s.idbi.pe:30001/github/downloads/idbi/logger/total?style=for-the-badge)
+![GitHub contributors](http://shields.k8s.idbi.pe:30001/github/contributors/idbi/logger?style=for-the-badge)
+![GitHub top language](http://shields.k8s.idbi.pe:30001/github/languages/top/idbi/logger?style=for-the-badge)
+![GitHub](http://shields.k8s.idbi.pe:30001/github/license/idbi/logger?style=for-the-badge)
 
-The project uses `make` to make your life easier. If you're not familiar with Makefiles you can take a look at [this quickstart guide](https://makefiletutorial.com).
+The project is intended to provide a global logger interface for all software that is developed using Go. This package
+uses [rs/zerolog]() under the hood to provide a great API and best performance possible.
+
+The project uses `make` to make your life easier. If you're not familiar with Makefiles you can take a look
+at [this quickstart guide](https://makefiletutorial.com).
 
 Whenever you need help regarding the available actions, just use the following command.
 
@@ -41,3 +44,7 @@ Run tests
 ```bash
 make test
 ```
+
+## Todo
+
+- [ ] Add performance tests based on rs/zerolog suite.
