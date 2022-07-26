@@ -1,0 +1,39 @@
+name: release
+
+permissions:
+  contents: write
+
+on:
+#  # Scan changed files in PRs, block on new issues only (existing issues ignored)
+#  pull_request: { }
+#
+#  # Scan all files on branches, block on any issues
+  push:
+    tags:
+      - "v*.*.*"
+
+  # Schedule this job to run at a certain time, using cron syntax
+  # Note that * is a special character in YAML so you have to quote this string
+  # schedule:
+  #   - cron: '30 0 1,15 * *' # scheduled for 00:30 UTC on both the 1st and 15th of the month
+
+  # Allows you to run this workflow manually from the Actions tab
+#  workflow_dispatch:
+#
+#  workflow_run:
+#    workflows: [ "semgrep"]
+#    branches: [ main ]
+#    types:
+#      - completed
+
+jobs:
+  publish-release:
+    name: "Publish Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Release"
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
+          prerelease: false
