@@ -44,8 +44,8 @@ func New() *zerolog.Logger {
 func NewWithConfig(config *Config) *zerolog.Logger {
 	logLevel := config.LogLevel
 
-	if config.DebugMode {
-		logLevel = zerolog.DebugLevel
+	if config.Verbose {
+		logLevel = zerolog.TraceLevel
 	}
 
 	zerolog.SetGlobalLevel(logLevel)

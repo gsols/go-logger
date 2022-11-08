@@ -20,12 +20,12 @@ type WriterConfig struct {
 }
 
 // Config is a struct that contains a boolean, a `zerolog.Level` and an `io.Writer`.
-// @property {bool} DebugMode - This is a boolean value that determines whether the application is running in debug mode or
+// @property {bool} Verbose - This is a boolean value that determines whether the application is running in debug mode or
 // not.
 // @property LogLevel - The level of logging you want to use.
 // @property Writer - The writer to which the logs will be written.
 type Config struct {
-	DebugMode    bool
+	Verbose      bool
 	LogLevel     zerolog.Level
 	WriterConfig WriterConfig
 }
