@@ -9,8 +9,26 @@ import (
 
 var fakeMessage = "Test logging, but use a somewhat realistic message length."
 
+func TestLogInit(t *testing.T) {
+	logger.Init()
+}
+
+func TestLogInitWithConfig(t *testing.T) {
+	logger.InitWithConfig(&logger.Config{
+		DebugMode: false,
+		LogLevel:  logger.ParseLevel("warn"),
+		WriterConfig: logger.WriterConfig{
+			Writer:     "discard",
+			Directory:  ".",
+			FileName:   "test.log",
+			MaxSize:    1,
+			MaxBackups: 2,
+			MaxAge:     24,
+		}})
+}
+
 func BenchmarkLogEmpty(b *testing.B) {
-	logger.Init(&logger.Config{
+	logger.InitWithConfig(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
@@ -31,7 +49,7 @@ func BenchmarkLogEmpty(b *testing.B) {
 }
 
 func BenchmarkDisabled(b *testing.B) {
-	logger.Init(&logger.Config{
+	logger.InitWithConfig(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("disabled"),
 		WriterConfig: logger.WriterConfig{
@@ -52,7 +70,7 @@ func BenchmarkDisabled(b *testing.B) {
 }
 
 func BenchmarkInfo(b *testing.B) {
-	logger.Init(&logger.Config{
+	logger.InitWithConfig(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
@@ -73,7 +91,7 @@ func BenchmarkInfo(b *testing.B) {
 }
 
 func BenchmarkContextFields(b *testing.B) {
-	logger.Init(&logger.Config{
+	logger.InitWithConfig(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
@@ -100,7 +118,7 @@ func BenchmarkContextFields(b *testing.B) {
 }
 
 func BenchmarkContextAppend(b *testing.B) {
-	logger.Init(&logger.Config{
+	logger.InitWithConfig(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
@@ -124,7 +142,7 @@ func BenchmarkContextAppend(b *testing.B) {
 }
 
 func BenchmarkLogFields(b *testing.B) {
-	logger.Init(&logger.Config{
+	logger.InitWithConfig(&logger.Config{
 		DebugMode: false,
 		LogLevel:  logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
