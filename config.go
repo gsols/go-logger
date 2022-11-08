@@ -1,7 +1,5 @@
 package logger
 
-import "github.com/rs/zerolog"
-
 // WriterConfig is a struct with 6 fields.
 // @property {string} Writer - The writer to use. This can be either "file" or "console".
 // @property {string} Directory - The directory where the log files will be written.
@@ -20,12 +18,12 @@ type WriterConfig struct {
 }
 
 // Config is a struct that contains a boolean, a `zerolog.Level` and an `io.Writer`.
-// @property {bool} Verbose - This is a boolean value that determines whether the application is running in debug mode or
+// @property {bool} Debug - This is a boolean value that determines whether the application is running in debug mode or
 // not.
 // @property LogLevel - The level of logging you want to use.
 // @property Writer - The writer to which the logs will be written.
 type Config struct {
-	Verbose      bool
-	LogLevel     zerolog.Level
+	Debug        bool
+	Verbosity    int
 	WriterConfig WriterConfig
 }

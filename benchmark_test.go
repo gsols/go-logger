@@ -15,7 +15,7 @@ func TestLogInit(t *testing.T) {
 
 func TestLogInitWithConfig(t *testing.T) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",
@@ -29,7 +29,7 @@ func TestLogInitWithConfig(t *testing.T) {
 
 func BenchmarkLogEmpty(b *testing.B) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",
@@ -50,7 +50,7 @@ func BenchmarkLogEmpty(b *testing.B) {
 
 func BenchmarkDisabled(b *testing.B) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("disabled"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",
@@ -71,7 +71,7 @@ func BenchmarkDisabled(b *testing.B) {
 
 func BenchmarkInfo(b *testing.B) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",
@@ -92,7 +92,7 @@ func BenchmarkInfo(b *testing.B) {
 
 func BenchmarkContextFields(b *testing.B) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",
@@ -119,7 +119,7 @@ func BenchmarkContextFields(b *testing.B) {
 
 func BenchmarkContextAppend(b *testing.B) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",
@@ -143,7 +143,7 @@ func BenchmarkContextAppend(b *testing.B) {
 
 func BenchmarkLogFields(b *testing.B) {
 	logger.InitWithConfig(&logger.Config{
-		Verbose:  false,
+		Debug:    false,
 		LogLevel: logger.ParseLevel("warn"),
 		WriterConfig: logger.WriterConfig{
 			Writer:     "discard",

@@ -86,3 +86,18 @@ func ParseLevel(levelStr string) zerolog.Level {
 	}
 	return logLevel
 }
+
+// ParseVerboseLevel takes an integer defining the
+// verbosity level and returns a zerolog.Level
+func ParseVerboseLevel(verbose int) zerolog.Level {
+	switch verbose {
+	case 1:
+		return zerolog.InfoLevel
+	case 2:
+		return zerolog.DebugLevel
+	case 3:
+		return zerolog.TraceLevel
+	default:
+		return zerolog.WarnLevel
+	}
+}

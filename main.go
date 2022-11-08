@@ -26,8 +26,7 @@ func InitWithConfig(config *Config) {
 
 // New is a function that creates a new logger with the default configuration
 func New() *zerolog.Logger {
-	logLevel := zerolog.InfoLevel
-	zerolog.SetGlobalLevel(logLevel)
+	zerolog.SetGlobalLevel(ParseVerboseLevel(0))
 
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMs
 
@@ -42,9 +41,9 @@ func New() *zerolog.Logger {
 
 // NewWithConfig is a function that creates a new logger with the given configuration
 func NewWithConfig(config *Config) *zerolog.Logger {
-	logLevel := config.LogLevel
+	logLevel := ParseVerboseLevel(config.Verbosity)
 
-	if config.Verbose {
+	if config.Debug {
 		logLevel = zerolog.TraceLevel
 	}
 
