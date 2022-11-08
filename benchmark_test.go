@@ -9,36 +9,30 @@ import (
 
 var fakeMessage = "Test logging, but use a somewhat realistic message length."
 
+func getConfig() *logger.Config {
+	return &logger.Config{
+		Debug:     false,
+		Verbosity: 0,
+		WriterConfig: &logger.WriterConfig{
+			Writer:     logger.Discard,
+			Directory:  "logs",
+			FileName:   "test.log",
+			MaxSize:    1,
+			MaxBackups: 2,
+			MaxAge:     24,
+		}}
+}
+
 func TestLogInit(t *testing.T) {
 	logger.Init()
 }
 
 func TestLogInitWithConfig(t *testing.T) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 }
 
 func BenchmarkLogEmpty(b *testing.B) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -49,17 +43,7 @@ func BenchmarkLogEmpty(b *testing.B) {
 }
 
 func BenchmarkDisabled(b *testing.B) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -70,17 +54,7 @@ func BenchmarkDisabled(b *testing.B) {
 }
 
 func BenchmarkInfo(b *testing.B) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {
@@ -91,17 +65,7 @@ func BenchmarkInfo(b *testing.B) {
 }
 
 func BenchmarkContextFields(b *testing.B) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 	logger.With().
 		Str("string", "four!").
 		Time("time", time.Time{}).
@@ -118,17 +82,7 @@ func BenchmarkContextFields(b *testing.B) {
 }
 
 func BenchmarkContextAppend(b *testing.B) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 	logger.With().
 		Str("foo", "bar").
 		Logger()
@@ -142,17 +96,7 @@ func BenchmarkContextAppend(b *testing.B) {
 }
 
 func BenchmarkLogFields(b *testing.B) {
-	logger.InitWithConfig(&logger.Config{
-		Debug:     false,
-		Verbosity: 0,
-		WriterConfig: logger.WriterConfig{
-			Writer:     "discard",
-			Directory:  ".",
-			FileName:   "test.log",
-			MaxSize:    1,
-			MaxBackups: 2,
-			MaxAge:     24,
-		}})
+	logger.InitWithConfig(getConfig())
 	b.ReportAllocs()
 	b.ResetTimer()
 	b.RunParallel(func(pb *testing.PB) {

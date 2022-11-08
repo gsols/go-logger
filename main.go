@@ -30,8 +30,8 @@ func New() *zerolog.Logger {
 
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMs
 
-	writer := ParseWriter(WriterConfig{
-		Writer: "stdout",
+	writer := GetWriter(&WriterConfig{
+		Writer: Stdout,
 	})
 
 	logger := zerolog.New(writer).With().Stack().Timestamp().Caller().Logger()
@@ -51,7 +51,7 @@ func NewWithConfig(config *Config) *zerolog.Logger {
 
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMs
 
-	writer := ParseWriter(config.WriterConfig)
+	writer := GetWriter(config.WriterConfig)
 
 	logger := zerolog.New(writer).With().Stack().Timestamp().Caller().Logger()
 

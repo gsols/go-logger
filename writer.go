@@ -11,6 +11,66 @@ import (
 
 const TimeFormat = "2006-01-02 15:04:05.000 -0700"
 
+type Writer int8
+
+const (
+	Discard Writer = iota
+	Stdout
+	Stderr
+	File
+	Default // Default is a combination of File and Stdout with a global level of zerolog.TraceLevel
+)
+
+// ConsoleWriter returns a new zerolog.ConsoleWriter with
+// the given output writer and a custom time format
+func ConsoleWriter(out io.Writer) io.Writer {
+	return zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
+		w.Out = out
+		w.TimeFormat = TimeFormat
+	})
+}
+
+// FileWriter creates a directory if it doesn't exist,
+// then returns a lumberjack.Logger that writes to a file in that directory
+func FileWriter(config *WriterConfig) io.Writer {
+	err := os.MkdirAll(config.Directory, os.ModePerm)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	return &lumberjack.Logger{
+		Filename:   fmt.Sprintf("%s/%s", config.Directory, config.FileName),
+		MaxSize:    config.MaxSize, // megabytes
+		MaxBackups: config.MaxBackups,
+		MaxAge:     config.MaxAge, // days
+		Compress:   true,          // disabled by default
+	}
+}
+
+// GetWriter takes a string and returns an io.Writer
+func GetWriter(config *WriterConfig) io.Writer {
+	switch config.Writer {
+	case Discard:
+		return io.Discard
+	case Stdout:
+		return ConsoleWriter(os.Stdout)
+	case Stderr:
+		return ConsoleWriter(os.Stderr)
+	case File:
+		return FileWriter(config)
+	case Default:
+		writer := zerolog.MultiLevelWriter(
+			FileWriter(config),
+			&LevelWriter{
+				Level:  zerolog.GlobalLevel(),
+				Writer: ConsoleWriter(os.Stdout),
+			})
+		zerolog.SetGlobalLevel(zerolog.TraceLevel)
+		return writer
+	}
+
+	return io.Discard
+}
+
 type LevelWriter struct {
 	Level zerolog.Level
 	io.Writer
@@ -24,52 +84,4 @@ func (lw *LevelWriter) WriteLevel(l zerolog.Level, p []byte) (n int, err error) 
 	}
 
 	return len(p), nil
-}
-
-// ParseWriter takes a string and returns an io.Writer
-func ParseWriter(writerConfig WriterConfig) io.Writer {
-	var writer io.Writer
-
-	switch writerConfig.Writer {
-	case "discard":
-		writer = io.Discard
-	case "stdout":
-		writer = zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
-			w.Out = os.Stdout
-			w.TimeFormat = TimeFormat
-		})
-	case "stderr":
-		writer = zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
-			w.Out = os.Stderr
-			w.TimeFormat = TimeFormat
-		})
-	case "file":
-		err := os.MkdirAll(writerConfig.Directory, os.ModePerm)
-		if err != nil {
-			fmt.Println(err.Error())
-			break
-		}
-
-		fileWriter := &lumberjack.Logger{
-			Filename:   fmt.Sprintf("%s/%s", writerConfig.Directory, writerConfig.FileName),
-			MaxSize:    writerConfig.MaxSize, // megabytes
-			MaxBackups: writerConfig.MaxBackups,
-			MaxAge:     writerConfig.MaxAge, // days
-			Compress:   true,                // disabled by default
-		}
-
-		fileWriterLeveled := &LevelWriter{Writer: fileWriter, Level: zerolog.TraceLevel}
-
-		consoleWriter := zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
-			w.Out = os.Stdout
-			w.TimeFormat = TimeFormat
-		})
-		writer = zerolog.MultiLevelWriter(fileWriterLeveled, consoleWriter)
-	default:
-		writer = zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
-			w.TimeFormat = TimeFormat
-		})
-	}
-
-	return writer
 }

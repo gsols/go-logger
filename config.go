@@ -9,7 +9,7 @@ package logger
 // @property {int} MaxBackups - The maximum number of old log files to retain.
 // @property {int} MaxAge - The maximum age of a log file in days
 type WriterConfig struct {
-	Writer     string
+	Writer     Writer
 	Directory  string
 	FileName   string
 	MaxSize    int
@@ -25,5 +25,5 @@ type WriterConfig struct {
 type Config struct {
 	Debug        bool
 	Verbosity    int
-	WriterConfig WriterConfig
+	WriterConfig *WriterConfig
 }
