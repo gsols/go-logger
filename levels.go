@@ -6,6 +6,13 @@ import (
 	"github.com/rs/zerolog"
 )
 
+const (
+	VerbosityDefault = iota
+	VerbosityInfo
+	VerbosityDebug
+	VerbosityTrace
+)
+
 // Debug starts a new message with debug level.
 //
 // You must call Msg on the returned event in order to send the event.
@@ -91,11 +98,11 @@ func ParseLevel(levelStr string) zerolog.Level {
 // verbosity level and returns a zerolog.Level
 func ParseVerboseLevel(verbose int) zerolog.Level {
 	switch verbose {
-	case 1:
+	case VerbosityInfo:
 		return zerolog.InfoLevel
-	case 2:
+	case VerbosityDebug:
 		return zerolog.DebugLevel
-	case 3:
+	case VerbosityTrace:
 		return zerolog.TraceLevel
 	default:
 		return zerolog.WarnLevel
