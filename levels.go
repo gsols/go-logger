@@ -13,6 +13,13 @@ const (
 	VerbosityTrace
 )
 
+// Trace starts a new message with trace level.
+//
+// You must call Msg on the returned event in order to send the event.
+func Trace() *zerolog.Event {
+	return _logger.Trace()
+}
+
 // Debug starts a new message with debug level.
 //
 // You must call Msg on the returned event in order to send the event.
