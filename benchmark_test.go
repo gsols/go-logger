@@ -14,7 +14,7 @@ func getConfig() *logger.Config {
 		Debug:     false,
 		Verbosity: 0,
 		WriterConfig: &logger.WriterConfig{
-			Writer:     logger.Discard,
+			Writer:     logger.DiscardWriter,
 			Directory:  "logs",
 			FileName:   "test.log",
 			MaxSize:    1,

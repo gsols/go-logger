@@ -14,25 +14,25 @@ const TimeFormat = "2006-01-02 15:04:05.000 -0700"
 type Writer int8
 
 const (
-	Discard Writer = iota
-	Stdout
-	Stderr
-	File
-	Default // Default is a combination of File and Stdout with a global level of zerolog.TraceLevel
+	DiscardWriter Writer = iota
+	StdoutWriter
+	StderrWriter
+	FileWriter
+	DefaultWriter // Default is a combination of File and Stdout with a global level of zerolog.TraceLevel
 )
 
-// ConsoleWriter returns a new zerolog.ConsoleWriter with
+// BuildConsoleWriter returns a new zerolog.ConsoleWriter with
 // the given output writer and a custom time format
-func ConsoleWriter(out io.Writer) io.Writer {
+func BuildConsoleWriter(out io.Writer) io.Writer {
 	return zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
 		w.Out = out
 		w.TimeFormat = TimeFormat
 	})
 }
 
-// FileWriter creates a directory if it doesn't exist,
+// BuildFileWriter creates a directory if it doesn't exist,
 // then returns a lumberjack.Logger that writes to a file in that directory
-func FileWriter(config *WriterConfig) io.Writer {
+func BuildFileWriter(config *WriterConfig) io.Writer {
 	err := os.MkdirAll(config.Directory, os.ModePerm)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -49,20 +49,20 @@ func FileWriter(config *WriterConfig) io.Writer {
 // GetWriter takes a string and returns an io.Writer
 func GetWriter(config *WriterConfig) io.Writer {
 	switch config.Writer {
-	case Discard:
+	case DiscardWriter:
 		return io.Discard
-	case Stdout:
-		return ConsoleWriter(os.Stdout)
-	case Stderr:
-		return ConsoleWriter(os.Stderr)
-	case File:
-		return FileWriter(config)
-	case Default:
+	case StdoutWriter:
+		return BuildConsoleWriter(os.Stdout)
+	case StderrWriter:
+		return BuildConsoleWriter(os.Stderr)
+	case FileWriter:
+		return BuildFileWriter(config)
+	case DefaultWriter:
 		writer := zerolog.MultiLevelWriter(
-			FileWriter(config),
+			BuildFileWriter(config),
 			&LevelWriter{
 				Level:  zerolog.GlobalLevel(),
-				Writer: ConsoleWriter(os.Stdout),
+				Writer: BuildConsoleWriter(os.Stdout),
 			})
 		zerolog.SetGlobalLevel(zerolog.TraceLevel)
 		return writer
