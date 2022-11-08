@@ -1,10 +1,9 @@
 package logger
 
 import (
+	"fmt"
 	"github.com/rs/zerolog"
 	"gopkg.in/natefinch/lumberjack.v2"
-
-	"fmt"
 	"io"
 	"os"
 )
@@ -16,11 +15,7 @@ func ParseWriter(writerConfig WriterConfig) io.Writer {
 	switch writerConfig.Writer {
 	case "stderr":
 		writer = os.Stderr
-	case "stdout":
-		writer = os.Stdout
-	case "discard":
-		writer = io.Discard
-	default:
+	case "file":
 		err := os.MkdirAll(writerConfig.Directory, os.ModePerm)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -39,6 +34,11 @@ func ParseWriter(writerConfig WriterConfig) io.Writer {
 				w.TimeFormat = "01/02/06 15:04:05.000 -0700"
 			}),
 		)
+	case "discard":
+		writer = io.Discard
+	case "stdout":
+	default:
+		writer = os.Stdout
 	}
 
 	return writer

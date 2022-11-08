@@ -2,7 +2,6 @@ package logger
 
 import (
 	"github.com/rs/zerolog"
-
 	"sync"
 )
 
@@ -10,16 +9,38 @@ import (
 var _logger *zerolog.Logger
 var _once sync.Once
 
-// Init is a function that takes a `Config` struct as an argument and returns nothing. It is a function
-// that is called once and only once
-func Init(config *Config) {
+// Init creates a new logger with the default configuration, and sets it as the default logger
+func Init() {
 	_once.Do(func() {
-		_logger = New(config)
+		_logger = New()
 	})
 }
 
-// New is a function that creates a new logger with the given configuration
-func New(config *Config) *zerolog.Logger {
+// InitWithConfig creates a new logger with the given configuration, and sets it as the default logger
+func InitWithConfig(config *Config) {
+	_once.Do(func() {
+		_logger = NewWithConfig(config)
+	})
+}
+
+// New is a function that creates a new logger with the default configuration
+func New() *zerolog.Logger {
+	logLevel := zerolog.InfoLevel
+	zerolog.SetGlobalLevel(logLevel)
+
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMs
+
+	writer := ParseWriter(WriterConfig{
+		Writer: "stdout",
+	})
+
+	logger := zerolog.New(writer).With().Stack().Timestamp().Caller().Logger()
+
+	return &logger
+}
+
+// NewWithConfig is a function that creates a new logger with the given configuration
+func NewWithConfig(config *Config) *zerolog.Logger {
 	logLevel := config.LogLevel
 
 	if config.DebugMode {
