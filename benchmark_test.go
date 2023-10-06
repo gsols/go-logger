@@ -1,8 +1,6 @@
 package logger_test
 
 import (
-	"github.com/nickaguilarh/go-logger"
-
 	"testing"
 	"time"
 )
