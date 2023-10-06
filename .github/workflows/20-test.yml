@@ -1,14 +1,13 @@
----
 # based on https://github.com/mvdan/github-actions-golang
-name: ci
+name: Test
 
 on:
   # Scan changed files in PRs, block on new issues only (existing issues ignored)
   pull_request: {}
 
   # Scan all files on branches, block on any issues
-  push:
-    branches: ["main"]
+#  push:
+#    branches: ["main"]
 
   # Schedule this job to run at a certain time, using cron syntax
   # Note that * is a special character in YAML so you have to quote this string
@@ -29,7 +28,7 @@ jobs:
 
     steps:
       - name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.go-version }}
 
@@ -53,11 +52,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
+      - name: Setup access to private packages
+        run: |
+          git config --global url."https://${ACCESS_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com"
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
       - name: Downloads the dependencies
         run: make download
-
-      - name: Lints all code with golangci-lint
-        run: make lint
 
       - name: Runs all tests
         run: make test
