@@ -3,6 +3,8 @@ package logger_test
 import (
 	"testing"
 	"time"
+
+	"github.com/gsols/go-logger"
 )
 
 var fakeMessage = "Test logging, but use a somewhat realistic message length."
