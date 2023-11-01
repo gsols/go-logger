@@ -12,7 +12,7 @@ jobs:
       - name: Release Please
         uses: google-github-actions/release-please-action@v3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: go
           changelog-path: CHANGELOG.md
           signoff: "nickaguilarh[bot] <nickaguilarh@gmail.com>"
