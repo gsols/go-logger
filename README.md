@@ -1,12 +1,4 @@
-# Logger
-
-![GitHub go.mod Go version](http://shields.k8s.idbi.pe:30001/github/go-mod/go-version/idbi/logger?style=for-the-badge)
-![GitHub branch checks state](http://shields.k8s.idbi.pe:30001/github/checks-status/idbi/logger/main?style=for-the-badge)
-![GitHub issues](http://shields.k8s.idbi.pe:30001/github/issues/idbi/logger?style=for-the-badge)
-![GitHub all releases](http://shields.k8s.idbi.pe:30001/github/downloads/idbi/logger/total?style=for-the-badge)
-![GitHub contributors](http://shields.k8s.idbi.pe:30001/github/contributors/idbi/logger?style=for-the-badge)
-![GitHub top language](http://shields.k8s.idbi.pe:30001/github/languages/top/idbi/logger?style=for-the-badge)
-![GitHub](http://shields.k8s.idbi.pe:30001/github/license/idbi/logger?style=for-the-badge)
+# Logger (Internal use)
 
 The project is intended to provide a global logger interface for all software that is developed using Go. This package
 uses [rs/zerolog]() under the hood to provide a great API and best performance possible.
