@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/gsols/go-logger/compare/v0.1.1...v0.1.2) (2023-11-02)
+
+
+### Features
+
+* add dependabot ([91d78d6](https://github.com/gsols/go-logger/commit/91d78d6495d3777162712dc486a95577f5758767))
+* add golang rule ([c573572](https://github.com/gsols/go-logger/commit/c5735721acb71f4cec7e3d1e6b1c723a8bae796c))
+
 ## [0.1.1](https://github.com/gsols/go-logger/compare/v0.1.0...v0.1.1) (2023-11-01)
 
 
