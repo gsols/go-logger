@@ -50,3 +50,4 @@ jobs:
             p/docker
             p/dockerfile
             p/command-injection
+            p/golang
