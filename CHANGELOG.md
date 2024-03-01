@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/gsols/go-logger/compare/v1.1.1...v1.2.0) (2024-03-01)
+
+
+### Features
+
+* use trace level as default ([726a81a](https://github.com/gsols/go-logger/commit/726a81ac7bc13a942c5a580c574235849dd5f32a))
+
 ## [1.1.1](https://github.com/gsols/go-logger/compare/v1.1.0...v1.1.1) (2024-03-01)
 
 
