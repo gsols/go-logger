@@ -8,6 +8,17 @@ import (
 
 var logger = New(WithDefaultWriter()).With().Caller().Timestamp().Logger()
 
-func New(w io.Writer) zerolog.Logger {
-	return zerolog.New(w)
+func New(w io.Writer, opts ...Option) zerolog.Logger {
+	l := zerolog.New(w)
+	for _, opt := range opts {
+		opt(&l)
+	}
+
+	return l
+}
+
+func WithOptions(opts ...Option) {
+	for _, opt := range opts {
+		opt(&logger)
+	}
 }

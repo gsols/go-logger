@@ -9,14 +9,21 @@ type Option func(logger *zerolog.Logger)
 
 // WithDebug is a function that takes a boolean value and returns an option.
 func WithDebug() Option {
-	return func(logger *zerolog.Logger) {
-		*logger = logger.Level(zerolog.DebugLevel)
+	return func(l *zerolog.Logger) {
+		*l = l.Level(zerolog.DebugLevel)
 	}
 }
 
 // WithVerbosity is a function that takes an integer value and returns an option.
 func WithVerbosity(verbosity int) Option {
-	return func(logger *zerolog.Logger) {
-		*logger = logger.Level(zerolog.Level(int(zerolog.PanicLevel) - verbosity))
+	return func(l *zerolog.Logger) {
+		*l = l.Level(zerolog.Level(int(zerolog.PanicLevel) - verbosity))
+	}
+}
+
+func WithSentry() Option {
+	var sentryHook SentryHook
+	return func(l *zerolog.Logger) {
+		*l = l.Hook(sentryHook)
 	}
 }
