@@ -2,7 +2,7 @@ package logger
 
 import "strconv"
 
-var MaxPathNumber = 2
+var MaxPathNumber = 1
 
 func countParentDirectories(filePath string, maxPath int) int {
 	parentsCounter := 0
