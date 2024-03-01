@@ -6,7 +6,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-var logger = New(WithDefaultWriter()).With().Caller().Timestamp().Logger()
+var logger = New(WithConsoleWriter()).With().Caller().Timestamp().Logger()
 
 func New(w io.Writer, opts ...Option) zerolog.Logger {
 	l := zerolog.New(w)

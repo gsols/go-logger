@@ -1,6 +1,8 @@
 package logger
 
 import (
+	"io"
+
 	"github.com/rs/zerolog"
 )
 
@@ -21,6 +23,14 @@ func WithVerbosity(verbosity int) Option {
 	}
 }
 
+// WithOutput is a function that takes an io.Writer and returns an option.
+func WithOutput(w io.Writer) Option {
+	return func(l *zerolog.Logger) {
+		*l = l.Output(w)
+	}
+}
+
+// WithSentry is a function that returns an option.
 func WithSentry() Option {
 	var sentryHook SentryHook
 	return func(l *zerolog.Logger) {
