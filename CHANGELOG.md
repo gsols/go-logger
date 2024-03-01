@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/gsols/go-logger/compare/v1.0.0...v1.1.0) (2024-03-01)
+
+
+### Features
+
+* add WithWriter option to setup global writer ([df49d1c](https://github.com/gsols/go-logger/commit/df49d1c2efdfd2f7eb9b1d73f518f1afd73ff112))
+
 ## [1.0.0](https://github.com/gsols/go-logger/compare/v0.2.0...v1.0.0) (2024-03-01)
 
 
