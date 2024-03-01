@@ -3,11 +3,11 @@ name: Test
 
 on:
   # Scan changed files in PRs, block on new issues only (existing issues ignored)
-  pull_request: {}
+  pull_request: { }
 
   # Scan all files on branches, block on any issues
-#  push:
-#    branches: ["main"]
+  #  push:
+  #    branches: ["main"]
 
   # Schedule this job to run at a certain time, using cron syntax
   # Note that * is a special character in YAML so you have to quote this string
@@ -20,17 +20,13 @@ on:
 jobs:
   test:
     name: test
-    strategy:
-      matrix:
-        go-version: [1.18.x]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: 1.22.x
 
       - name: Checkout code
         uses: actions/checkout@v4
