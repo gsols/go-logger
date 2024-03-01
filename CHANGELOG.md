@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/gsols/go-logger/compare/v1.1.0...v1.1.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* change path number to 1. change defualt format time and file log name ([f8069fb](https://github.com/gsols/go-logger/commit/f8069fb0c5d14d82dc8dfcc86defcce227b6c3e7))
+
 ## [1.1.0](https://github.com/gsols/go-logger/compare/v1.0.0...v1.1.0) (2024-03-01)
 
 
