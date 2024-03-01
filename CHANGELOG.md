@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/gsols/go-logger/compare/v1.2.0...v1.3.0) (2024-03-01)
+
+
+### Features
+
+* add context on global logger ([27560ec](https://github.com/gsols/go-logger/commit/27560ecdeec1e6154b6907074eb4851546c09f19))
+
 ## [1.2.0](https://github.com/gsols/go-logger/compare/v1.1.1...v1.2.0) (2024-03-01)
 
 
