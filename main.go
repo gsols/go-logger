@@ -9,6 +9,8 @@ import (
 var logger = New(WithConsoleWriter()).With().Caller().Timestamp().Logger()
 
 func New(w io.Writer, opts ...Option) zerolog.Logger {
+	zerolog.TimeFieldFormat = TimeFormat
+	zerolog.CallerMarshalFunc = CallerMarshalFunc
 	l := zerolog.New(w)
 	for _, opt := range opts {
 		opt(&l)

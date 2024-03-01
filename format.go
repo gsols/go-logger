@@ -2,15 +2,15 @@ package logger
 
 import "strconv"
 
-var MaxParentDirs = 2
+var MaxPathNumber = 2
 
-func countParentDirectories(filePath string, maxDirs int) int {
+func countParentDirectories(filePath string, maxPath int) int {
 	parentsCounter := 0
 	for i := len(filePath) - 1; i > 0; i-- {
 		if filePath[i] == '/' {
 			parentsCounter++
 		}
-		if parentsCounter == maxDirs+1 {
+		if parentsCounter == maxPath {
 			return i + 1
 		}
 	}
@@ -19,6 +19,6 @@ func countParentDirectories(filePath string, maxDirs int) int {
 }
 
 var CallerMarshalFunc = func(_ uintptr, file string, line int) string {
-	file = file[countParentDirectories(file, MaxParentDirs):]
+	file = file[countParentDirectories(file, MaxPathNumber):]
 	return file + ":" + strconv.Itoa(line)
 }

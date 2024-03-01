@@ -24,3 +24,7 @@ func TestWithOptions(t *testing.T) {
 		t.Errorf("invalid log output:\ngot:  %v\nwant: %v", got, want)
 	}
 }
+
+func TestGlobal(t *testing.T) {
+	logger.Debug().Msg("")
+}
