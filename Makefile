@@ -2,7 +2,7 @@ SHELL=/bin/bash -e -o pipefail
 PWD = $(shell pwd)
 
 # constants
-GOLANGCI_VERSION = 1.47.2
+GOLANGCI_VERSION = 1.56.2
 DOCKER_REPO = demo
 DOCKER_TAG = latest
 
@@ -51,10 +51,10 @@ out/lint.xml: $(GOLANGCI_LINT) out download
 	@$(GOLANGCI_LINT) run ./... --out-format checkstyle | tee "$(@)"
 
 test: ## Runs all tests
-	@go test $(ARGS) ./...
+	@go test -race . ./...
 
 benchmark: ## Runs all tests
-	@go test -bench=. -run=^# $(ARGS) ./...
+	@go test -race -bench . -benchmem ./...
 
 coverage: out/report.json ## Displays coverage per func on cli
 	go tool cover -func=out/cover.out

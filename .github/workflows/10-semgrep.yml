@@ -47,7 +47,5 @@ jobs:
             p/ci
             p/r2c
             p/r2c-ci
-            p/docker
-            p/dockerfile
             p/command-injection
             p/golang
