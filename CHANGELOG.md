@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/gsols/go-logger/compare/v1.4.0...v1.5.0) (2024-03-15)
+
+
+### Features
+
+* add GetLevel ([5f4636f](https://github.com/gsols/go-logger/commit/5f4636f0f230f1901a9a63da0982dd46336de040))
+
 ## [1.4.0](https://github.com/gsols/go-logger/compare/v1.3.0...v1.4.0) (2024-03-15)
 
 
