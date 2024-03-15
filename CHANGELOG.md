@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/gsols/go-logger/compare/v1.3.0...v1.4.0) (2024-03-15)
+
+
+### Features
+
+* update error level and remove debug ([85e7133](https://github.com/gsols/go-logger/commit/85e71331790f9304dac59a834967c000011dbba7))
+
 ## [1.3.0](https://github.com/gsols/go-logger/compare/v1.2.0...v1.3.0) (2024-03-01)
 
 
