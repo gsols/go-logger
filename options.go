@@ -15,7 +15,7 @@ type Option func(logger *zerolog.Logger)
 // The verbosity is subtracted from the Panic level to determine the log level.
 func WithVerbosity(verbosity int) Option {
 	return func(l *zerolog.Logger) {
-		*l = l.Level(zerolog.Level(int(zerolog.ErrorLevel) - verbosity))
+		*l = l.Level(zerolog.Level(int(zerolog.WarnLevel) - verbosity))
 	}
 }
 

@@ -11,7 +11,7 @@ var logger = New(WithConsoleWriter()).With().Caller().Timestamp().Logger()
 func New(w io.Writer, opts ...Option) zerolog.Logger {
 	zerolog.TimeFieldFormat = TimeFieldFormat
 	zerolog.CallerMarshalFunc = CallerMarshalFunc
-	zerolog.SetGlobalLevel(zerolog.TraceLevel)
+	zerolog.SetGlobalLevel(zerolog.WarnLevel)
 
 	l := zerolog.New(w)
 	for _, opt := range opts {
