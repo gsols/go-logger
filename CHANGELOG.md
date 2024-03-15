@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/gsols/go-logger/compare/v1.5.0...v1.5.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* wrong start level ([3264913](https://github.com/gsols/go-logger/commit/3264913e07f9cef6a32a94bfcdf4b473451cb6b2))
+
 ## [1.5.0](https://github.com/gsols/go-logger/compare/v1.4.0...v1.5.0) (2024-03-15)
 
 
