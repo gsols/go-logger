@@ -10,21 +10,12 @@ import (
 // This is used to apply different configurations to the logger.
 type Option func(logger *zerolog.Logger)
 
-// WithDebug is a function that returns an option.
-// This option sets the logger's level to Debug.
-// Debug level logs are typically used for development and debugging purposes.
-func WithDebug() Option {
-	return func(l *zerolog.Logger) {
-		*l = l.Level(zerolog.DebugLevel)
-	}
-}
-
 // WithVerbosity is a function that takes an integer value and returns an option.
 // This option sets the logger's level based on the provided verbosity.
 // The verbosity is subtracted from the Panic level to determine the log level.
 func WithVerbosity(verbosity int) Option {
 	return func(l *zerolog.Logger) {
-		*l = l.Level(zerolog.Level(int(zerolog.PanicLevel) - verbosity))
+		*l = l.Level(zerolog.Level(int(zerolog.ErrorLevel) - verbosity))
 	}
 }
 
