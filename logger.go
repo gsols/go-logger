@@ -142,3 +142,14 @@ func WithContext(ctx context.Context) context.Context {
 func UpdateContext(update func(c zerolog.Context) zerolog.Context) {
 	logger.UpdateContext(update)
 }
+
+// GetLevel is a function that returns the current logging level of the logger.
+// The logging level is of type zerolog.Level, which is an integer type where
+// higher values represent lower severity levels.
+//
+// This function is useful when you want to check the current logging level
+// programmatically, for example to only execute certain code if the logging
+// level is set to a certain severity.
+func GetLevel() zerolog.Level {
+	return logger.GetLevel()
+}
