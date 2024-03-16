@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.2](https://github.com/gsols/go-logger/compare/v1.5.1...v1.5.2) (2024-03-16)
+
+
+### Bug Fixes
+
+* missing log on level verbosity change ([9721eb5](https://github.com/gsols/go-logger/commit/9721eb51501014ed409e977027270bc0366d8224))
+* options ([171dbdb](https://github.com/gsols/go-logger/commit/171dbdbee9ceab5361ad18cfb68eb1ebf2f092ab))
+
 ## [1.5.1](https://github.com/gsols/go-logger/compare/v1.5.0...v1.5.1) (2024-03-15)
 
 
