@@ -8,12 +8,11 @@ import (
 	"github.com/rs/zerolog"
 )
 
-const TimeFieldFormat = "2006-01-02 15:04:05"
 const FileNameTimeFormat = "logs/2006-01-02_15.log"
 
 func WithConsoleWriter() io.Writer {
 	return zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
-		w.TimeFormat = TimeFieldFormat
+		w.TimeFormat = time.RFC3339
 		w.Out = os.Stdout
 	})
 }

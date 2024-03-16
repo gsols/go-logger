@@ -153,3 +153,29 @@ func UpdateContext(update func(c zerolog.Context) zerolog.Context) {
 func GetLevel() zerolog.Level {
 	return logger.GetLevel()
 }
+
+// SetGlobalLevel is a function that sets the global logging level.
+// The logging level is of type zerolog.Level, which is an integer type where
+// higher values represent lower severity levels. The levels are as follows:
+// 0=panic, 1=fatal, 2=error, 3=warn, 4=info, 5=debug, 6=trace.
+//
+// This function is useful when you want to set the global logging level
+// programmatically, for example to control the overall verbosity of your application.
+//
+// Parameters:
+//
+//	l (zerolog.Level): The logging level to set as the global level.
+func SetGlobalLevel(l zerolog.Level) {
+	zerolog.SetGlobalLevel(l)
+}
+
+// GlobalLevel is a function that returns the current global logging level.
+// The logging level is of type zerolog.Level, which is an integer type where
+// higher values represent lower severity levels.
+//
+// This function is useful when you want to check the current global logging level
+// programmatically, for example to only execute certain code if the global logging
+// level is set to a certain severity.
+func GlobalLevel() zerolog.Level {
+	return zerolog.GlobalLevel()
+}

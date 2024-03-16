@@ -15,17 +15,17 @@ func TestCallerMarshalFunc(t *testing.T) {
 		want string
 	}{
 		{
-			name: "Test with no parent directories",
+			name: "Test with no parent",
 			file: "file.txt",
 			line: 10,
-			max:  1,
+			max:  0,
 			want: "file.txt:10",
 		},
 		{
 			name: "Test with one parent directory",
 			file: "dir/file.txt",
 			line: 20,
-			max:  2,
+			max:  1,
 			want: "dir/file.txt:20",
 		},
 		{
@@ -33,21 +33,21 @@ func TestCallerMarshalFunc(t *testing.T) {
 			file: "dir/subdir/file.txt",
 			line: 30,
 			max:  2,
-			want: "subdir/file.txt:30",
+			want: "dir/subdir/file.txt:30",
 		},
 		{
 			name: "Test with three parent directories and maxDirs set to 2",
 			file: "dir/subdir/subsubdir/file.txt",
 			line: 40,
 			max:  2,
-			want: "subsubdir/file.txt:40",
+			want: "subdir/subsubdir/file.txt:40",
 		},
 		{
 			name: "Test with four parent directories and maxDirs set to 3",
 			file: "dir/subdir/subsubdir/subsubsubdir/file.txt",
 			line: 40,
 			max:  3,
-			want: "subsubdir/subsubsubdir/file.txt:40",
+			want: "subdir/subsubdir/subsubsubdir/file.txt:40",
 		},
 	}
 
