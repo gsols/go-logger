@@ -4,9 +4,10 @@ import (
 	"github.com/rs/zerolog"
 )
 
-const defaultLogLevel = zerolog.WarnLevel
+const DefaultLevel = zerolog.WarnLevel
+const DebugLevel = zerolog.DebugLevel
 
-var logger = zerolog.New(WithConsoleWriter()).Level(defaultLogLevel).With().Caller().Timestamp().Logger()
+var logger = zerolog.New(WithConsoleWriter()).Level(DefaultLevel).With().Caller().Timestamp().Logger()
 
 func init() {
 	zerolog.CallerMarshalFunc = CallerMarshalFunc

@@ -20,7 +20,7 @@ func WithVerbosity(verbosity int) Option {
 	return func(l *zerolog.Logger) {
 		mux.Lock()
 		defer mux.Unlock()
-		*l = l.Level(defaultLogLevel - zerolog.Level(verbosity))
+		*l = l.Level(DefaultLevel - zerolog.Level(verbosity))
 	}
 }
 
