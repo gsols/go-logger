@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-const FileNameTimeFormat = "logs/2006-01-02_15.log"
+const FileNameTimeFormat = "logs/2006-01-02_15_04_05.log"
 
 func WithConsoleWriter() io.Writer {
 	return zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
