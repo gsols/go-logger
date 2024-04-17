@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/gsols/go-logger/compare/v1.5.2...v1.5.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* wrong log file name ([32420c7](https://github.com/gsols/go-logger/commit/32420c74b153ae14daa6cf3492dfc6cfd9a05ab0))
+
 ## [1.5.2](https://github.com/gsols/go-logger/compare/v1.5.1...v1.5.2) (2024-03-16)
 
 
