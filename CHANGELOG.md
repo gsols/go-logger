@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/gsols/go-logger/compare/v1.5.3...v1.6.0) (2024-04-19)
+
+
+### Features
+
+* add path to file writer ([b2fd145](https://github.com/gsols/go-logger/commit/b2fd1451bddaf57cce941c97aab7380f4c66a592))
+
 ## [1.5.3](https://github.com/gsols/go-logger/compare/v1.5.2...v1.5.3) (2024-04-17)
 
 
